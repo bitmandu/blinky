@@ -1,0 +1,4 @@
+* xref:index.adoc[Introduction]
+* xref:toolchain.adoc[Installing the Toolchain]
+* xref:license.adoc[License]
+* https://github.com/bitmandu/blinky/issue[Issue Tracker]

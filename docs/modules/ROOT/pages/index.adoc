@@ -1,0 +1,16 @@
+= Blinky
+:esp8266: https://www.espressif.com/en/products/hardware/esp8266ex/overview
+:blinky: https://github.com/pfalcon/esp-open-sdk/tree/master/examples/blinky
+:esp-open-sdk: https://github.com/pfalcon/esp-open-sdk
+
+Blink an LED on the {esp8266}[ESP8266] — the `hello world` program of
+microcontrollers.
+
+This is basically a fork of {blinky}[blinky] provided with
+{esp-open-sdk}[esp-open-sdk] for the latest version of the ESP8266
+Non-OS SDK.
+
+This project:
+
+* [x] Uses the latest Non-OS SDK (v3.0, released August 2018).
+* [x] Registers a Non-FOTA Partition Table with `system_partition_table_regist()`

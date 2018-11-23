@@ -1,0 +1,82 @@
+= Installing the Toolchain
+:crosstool-NG: https://crosstool-ng.github.io/
+:crosstool-NG-esp: https://github.com/espressif/crosstool-NG
+:crosstool-NG-install: http://crosstool-ng.github.io/docs/install/
+:esp-open-sdk: https://github.com/pfalcon/esp-open-sdk
+:esptool: https://github.com/espressif/esptool
+:sdk: https://github.com/espressif/ESP8266_NONOS_SDK
+
+
+The easiest path to programming the ESP8266 is to use
+{esp-open-sdk}[esp-open-sdk] to install the development toolchain.
+However (as of November 2018), esp-open-sdk is using older versions of
+the Non-OS SDK and esptool.py.
+
+A more recent development toolchain can be obtained directly from Git
+repositories hosted by Espressif.
+
+== Step 1: xtensa-lx106-elf compiler
+
+{crosstool-NG}[crosstool-NG] is a toolchain generator supporting a
+number of microcontroller architectures.
+
+Espressif maintains a {crosstool-NG-esp}[crosstool-NG repository] that
+supports the Xtensa compiler toolchain for the
+ESP8266.footnote:[Espressif's crosstool-NG repository is a fork of
+https://github.com/jcmvbkbc/crosstool-NG[another repository]. It's
+unclear which one is the better choice. Unfortunately, it appears that
+the xtensa-lx106-elf configuration never made it into the
+https://github.com/crosstool-ng/crosstool-ng[parent crosstool-NG
+repository].]
+
+[source, shell]
+----
+$ git clone https://github.com/crosstool-ng/crosstool-ng.git
+$ cd crosstool-NG
+----
+
+The steps to install `ct-ng` are covered in the
+{crosstool-NG-install}[crosstool-NG documentation], but boil down to
+
+[source, shell]
+----
+$ ./bootstrap
+$ ./configure --enable-local
+$ make
+----
+
+The xtensa-lx106-elf toolchain can then be built.
+
+[source, shell]
+----
+$ ./ct-ng xtensa-lx106-elf
+$ ./ct-ng build
+----
+
+Locate the compiler by adding the following to your shell (e.g.,
+.bash_profile).
+
+[source, shell]
+----
+export PATH=/path/to/crosstool-NG/builds/xtensa-lx106-elf/bin:$PATH
+----
+
+== Step 2: esptool.py
+
+{esptool}[esptool.py] communicates with the ESP8266 over serial to
+load firmware, and can be installed into your Python environment using
+`pip`.
+
+[source, shell]
+----
+$ pip install esptool
+----
+
+== Step 3: ESP8266 Non-OS SDK
+
+Lastly, the latest version of the {sdk}[SDK] needs to be installed.
+
+[source, shell]
+----
+$ git clone https://github.com/espressif/ESP8266_NONOS_SDK.git
+----
